@@ -5,14 +5,32 @@
 
 void sayhello();
 void readascii();
-void clearScreen(); //for clear, move to utils
+void clearScreen();       //for clear, move to utils
 void setColour(char key); //move to utils
+
+#define EARTH_RADIUS_KM = 6378.160;
 
 int main()
 {
     clearScreen();
     readascii();
     sayhello();
+
+
+    signed int inclinationValue = 0;
+    unsigned int orbitHeight = 0;
+    unsigned int apogeeAltitude = 0;
+
+    printf("Transfer Orbit Inclination or launch site latitude (deg): ");
+    scanf("%d", &inclinationValue);
+
+    printf("Transfer Orbit Perigee Altitude (km): ");
+    scanf("%u", &orbitHeight);
+
+    printf("Transfer Orbit Apogee Altitude (km): ");
+    scanf("%u", &apogeeAltitude);
+
+
 
     return 0;
 }
@@ -54,29 +72,27 @@ void clearScreen() //move to utils
     write(STDOUT_FILENO, CLEAR_SCREEN_ANSI, 12);
 }
 
-
-
 void setColour(char key) //null for reset, //move to utils
 {
     switch (key)
     {
-        case 'r': //red
-            printf("\033[1;31m");
-            break;
-        case 'g': //green
-            break;
-            printf("\033[0;32m");
-        case 'b': //blue
-            break;
-            printf("\033[0;34m");
-        case 'y': //yellow
-            printf("\033[1;33m");
-            break;
-        case 'c': //cyan
-            printf("\033[0;36m");
-            break;
-        default: //reset
-            printf("\033[0m");
-            break;
+    case 'r': //red
+        printf("\033[1;31m");
+        break;
+    case 'g': //green
+        break;
+        printf("\033[0;32m");
+    case 'b': //blue
+        break;
+        printf("\033[0;34m");
+    case 'y': //yellow
+        printf("\033[1;33m");
+        break;
+    case 'c': //cyan
+        printf("\033[0;36m");
+        break;
+    default: //reset
+        printf("\033[0m");
+        break;
     }
 }
